@@ -4,7 +4,7 @@
 | -------------- | ------ |
 | Naël Meter| 361113 |
 | Lionel Hegetschweiler| 362272 |
-| Arnaud Favre | ???? |
+| Arnaud Favre | 363779 |
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
