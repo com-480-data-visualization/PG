@@ -20,16 +20,16 @@ How do different types of global crises (health, economic, geopolitical) uniquel
 ### General Topic and Main Axis:
 Global aviation trends over time with a focus on the vulnerability of air traffic with regards to global crises: how the traffic crashes and recover.
 
-> - What am I trying to show with my visualization?
+- What am I trying to show with my visualization?
 Break down the anatomy of a crisis. Our visuals should answer these questions:
     How bad was COVID-19 compared to the 2008 Financial Crisis, 9/11, or the 2010 Icelandic volcano?
     Did the crisis ground flights everywhere, or was it isolated to specific regions?
     Did flights return to normal immediately, or did it take years?
-> - Think of an overview for the project, your motivation, and the target audience.
-Motivation: Air traffic is basically a proxy for the global economy. Visualizing this data shows exactly how fragile our connected world is when things go wrong, and how long it actually takes for normal life to resume.
-Target Audience:
-General Public: They want a clear, easy-to-read story. This means you guide them through the data, comparing massive events like COVID-19 to historical events so they understand the scale.
-Economists / Industry Analysts: They want to dig into the data themselves. This means building an exploratory dashboard where they can filter by continent, year, and crisis type.
+#### - Think of an overview for the project, your motivation, and the target audience.
+##### Motivation: Air traffic is basically a proxy for the global economy. Visualizing this data shows exactly how fragile our connected world is when things go wrong, and how long it actually takes for normal life to resume.
+##### Target Audience:
+###### General Public: They want a clear, easy-to-read story. This means you guide them through the data, comparing massive events like COVID-19 to historical events so they understand the scale.
+###### Economists / Industry Analysts: They want to dig into the data themselves. This means building an exploratory dashboard where they can filter by continent, year, and crisis type.
 
 ### Exploratory Data Analysis
 
