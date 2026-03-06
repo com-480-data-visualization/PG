@@ -6,7 +6,7 @@
 | Lionel Hegetschweiler| 362272 |
 | Arnaud Favre | 363779 |
 
-[Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
+[Milestone 1](./milestones/Milestone1.md) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
 ## Milestone 1 (20th March, 5pm)
 
