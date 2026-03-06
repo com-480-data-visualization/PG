@@ -36,9 +36,9 @@ Air traffic is basically a proxy for the global economy. Visualizing this data s
 
 #### Target Audience:
 ##### General Public: 
-They want a clear, easy-to-read story. This means you guide them through the data, comparing massive events like COVID-19 to historical events so they understand the scale.
+Provide a clear, easy to read story. Guide them through the data, comparing massive events like COVID-19 to historical events so they understand the scale.
 ##### Economists / Industry Analysts: 
-They want to dig into the data themselves. This means building an exploratory dashboard where they can filter by continent, year, and crisis type.
+They might want to dig into the data themselves. This means building an exploratory dashboard where they can filter by continent, year, and crisis type.
 
 ### Exploratory Data Analysis
 
