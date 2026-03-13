@@ -57,3 +57,9 @@ Please, fill the following sections about your project.
 - < 24h: 80% of the grade for the milestone
 - < 48h: 70% of the grade for the milestone
 
+## Dataset sources
+- Airline_fares_in_us_city_average.csv (https://fred.stlouisfed.org/series/CUSR0000SETG01)
+- US Airline Flight Routes and Fares 1993-2024.csv (https://www.kaggle.com/datasets/bhavikjikadara/us-airline-flight-routes-and-fares-1993-2024)
+- U.S._Gulf_Coast_Kerosene-Type_Jet_Fuel_Spot_Price_FOB_daily.csv (https://www.eia.gov/dnav/pet/hist/EER_EPJK_PF4_RGC_DPGD.htm)
+- U.S._Gulf_Coast_Kerosene-Type_Jet_Fuel_Spot_Price_FOB.csv (https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&s=EER_EPJK_PF4_RGC_DPG&f=M)
+- avia_paocc__custom_20420811_spreadsheet.xlsx (https://ec.europa.eu/eurostat/databrowser/view/avia_paocc/default/table?lang=en&category=avia.avia_pa.avia_pao)
