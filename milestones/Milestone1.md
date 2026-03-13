@@ -1,11 +1,4 @@
-## Milestone 1 (20th March, 5pm)
-
-**10% of the final grade**
-
-This is a preliminary milestone to let you set up goals for your final project and assess the feasibility of your ideas.
-Please, fill the following sections about your project.
-
-*(max. 2000 characters per section)*
+## Milestone 1
 
 ### Dataset
 
@@ -14,8 +7,6 @@ Please, fill the following sections about your project.
 > Hint: some good pointers for finding quality publicly available datasets ([Google dataset search](https://datasetsearch.research.google.com/), [Kaggle](https://www.kaggle.com/datasets), [OpenSwissData](https://opendata.swiss/en/), [SNAP](https://snap.stanford.edu/data/) and [FiveThirtyEight](https://data.fivethirtyeight.com/)).
 
 ## Problematic
-
-
 
 ### General Topic and Main Axis:
 Food science is dictated by chemistry. We want to find the relationships between ingredients that create tasty flavor combinations, and compare it across cultures.
@@ -43,17 +34,13 @@ New tasty flavors combinations is one of the reasons that can make a restaurant 
 
 ### Related work
 
+#### What others have already done with the data?
+In 2011, the Ahn et al. Flavor Network dataset was released. Researchers used the data to test the food pairing hypothesis, discovering a cultural divide between Western cuisines, where they typically pair ingredients sharing many flavor compounds, and East Asian cuisines, where they avoid these overlap in favor of constrasting flavors.
+Later on, platforms like FlavorDB and CulinaryDB used this data to create text-based search engines where users can look up an ingredient and read a flat list of its chemical compounds. Machine learning engineers have also used the data to train algorithms that predict a recipe's country of origin based on its ingredient list.
 
-> - What others have already done with the data?
-> - Why is your approach original?
-> - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
-> - In case you are using a dataset that you have already explored in another context (ML or ADA course, semester project...), you are required to share the report of that work to outline the differences with the submission for this class.
+#### Why is your approach original?
+Our approach is original because it will bridge the gap between academic chemistry and cooking through interactive visualizations. Instead of presenting a network graph, we will clarify the molecular relationships with a clean bipartite graph, placing ingredients on the left and chemical compounds on the right. We will also introduce a more interactive aspect through interesting visualizations such as maps and graphs.
 
-## Milestone 2 (17th April, 5pm)
-
-**10% of the final grade**
-
-
-## Milestone 3 (29th May, 5pm)
-
-**80% of the final grade**
+#### What source of inspiration do you take?
+Our primary sources of inspiration are directly from the Ahn and al. flavor network repository and the mathematical foundation behind the Food Pairing Hypothesis. We were also insprired by the data structures found in platforms like FlavorDB and CulinaryDB. We think these databases are really cool and offer incredible depths of information regarding recipe compositions, we didn't find them really interactive and user-friendly.
+Beyond these academic and technical sources, our inspiration is also personal motivation, with the desire to better match ingredients with the kitchen and leverage the versatility of ingredients.
