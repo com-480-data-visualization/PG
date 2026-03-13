@@ -15,30 +15,26 @@ Please, fill the following sections about your project.
 
 ## Problematic
 
-How do different types of global crises (health, economic, geopolitical) uniquely disrupt air traffic, and what does that tell us about how fast the air traffic recovers?
+
 
 ### General Topic and Main Axis:
-Global aviation trends over time with a focus on the vulnerability of air traffic with regards to global crises: how the traffic crashes and recovers.
+Food science is dictated by chemistry. We want to find the relationships between ingredients that create tasty flavor combinations, and compare it across cultures.
 
 #### What am I trying to show with my visualization? 
-Break down the anatomy of a crisis. Our visuals should answer these questions:
+We want to show how ingredients are linked chemicaly, and what this tells us on flavor combinations. This will help us find hidden links between seemingly unrelated foods and pattern variations between different cultures. In a second time, we want to suggest science-based recipes that match certain flavor profiles.
 
-How bad was COVID-19 compared to the 2008 Financial Crisis, 9/11, or the 2010 Icelandic volcano?
-    
-Did the crisis ground flights everywhere, or was it isolated to specific regions?
-    
-Did flights return to normal immediately, or did it take years?
 
 ### Motivation and Target Audience:
 
 ##### Motivation: 
-Air traffic is basically a proxy for the global economy. Visualizing this data shows exactly how fragile our connected world is when things go wrong, and how long it actually takes for normal life to resume.
+While taste preferences are subjective, we want to show the underlying science that make a dish unequivocaly tasty to the human palate. On a personal note, we are curious to explore how gaining some knowledge about the science behind food can hopefully improve our cooking.
 
 #### Target Audience:
 ##### General Public: 
-Provide a clear, easy to read story. Guide them through the data, comparing massive events like COVID-19 to historical events so they understand the scale.
-##### Economists / Industry Analysts: 
-They might want to dig into the data themselves. This means building an exploratory dashboard where they can filter by continent, year, and crisis type.
+The amateur cook can improve his skills and understanding of food science, or at the very least come to think of original ways to combine their leftovers for a satisfying meal. 
+
+##### Chefs : 
+New tasty flavors combinations is one of the reasons that can make a restaurant stand out. Understanding the science behind food is essential to this end.
 
 ### Exploratory Data Analysis
 
