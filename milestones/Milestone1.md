@@ -29,8 +29,19 @@ New tasty flavors combinations is one of the reasons that can make a restaurant 
 
 ### Exploratory Data Analysis
 
-> Pre-processing of the data set you chose
-> - Show some basic statistics and get insights about the data
+We did some analysis on the datasets we have and plotted some graphs to get some insights about things like which ingredients are the most used in the dataset as a whole and in each country individually, which category of ingredients are the most used in each country, which ingredients are most often paired together, which compounds appear the most together, and even the top 20 pairings of foods following the flavor network theory. We put some of the graphs under this text and you can see all of our code at [recipes dataset analysis](../data_analysis/recipes_around_the_world.ipynb) and [molecular composition datasets](../data_analysis/molecular_cuisine.ipynb).
+
+![Top 15 countries in the dataset by number of recipes](./images/top_15_countries.png "Top 15 countries in the dataset by number of recipes")
+
+![Top 15 ingredients in the dataset](./images/top_15_ingredients.png "Top 15 ingredients in the dataset")
+
+![Top 5 categories in each countries of the dataset](./images/top_5_categories.png "Top 5 categories in each countries of the dataset")
+
+![Ingredients co-occurrence](./images/ingredients_coocurrence.png "Ingredients co-occurrence")
+
+![Compounds heatmaps](./images/compounds_heatmaps.png "Compounds heatmaps")
+
+![Top 20 flavor pairings following the flavor network theory](./images/top_20_flavor_pairings.png "Top 20 flavor pairings following the flavor network theory")
 
 ### Related work
 
