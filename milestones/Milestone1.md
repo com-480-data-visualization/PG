@@ -1,11 +1,11 @@
 ## Milestone 1
 
 ### Dataset
+For our project, we are combining two datasets to build our visualization. The Ahn et al. Flavor Network data provides the foundational chemical mapping, linking hundreds of culinary ingredients to their specific volatile flavor compounds to form the left and right nodes of our graph. We are merging this with CulinaryDB, a structured database of over 45,000 real-world recipes.
 
-> Find a dataset (or multiple) that you will explore. Assess the quality of the data it contains and how much preprocessing / data-cleaning it will require before tackling visualization. We recommend using a standard dataset as this course is not about scraping nor data processing.
->
-> Hint: some good pointers for finding quality publicly available datasets ([Google dataset search](https://datasetsearch.research.google.com/), [Kaggle](https://www.kaggle.com/datasets), [OpenSwissData](https://opendata.swiss/en/), [SNAP](https://snap.stanford.edu/data/) and [FiveThirtyEight](https://data.fivethirtyeight.com/)).
+https://github.com/lingcheng99/Flavor-Network/tree/master/data
 
+https://cosylab.iiitd.edu.in/culinarydb/#databasedescription
 ## Problematic
 
 ### General Topic and Main Axis:
