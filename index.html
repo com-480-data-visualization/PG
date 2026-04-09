@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Flavor Network | Culinary Chemistry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>The Flavor Network</h1>
+        <p>Bridging the gap between academic chemistry and cooking</p>
+    </header>
+
+    <nav>
+        <a href="#network-explorer">Network Explorer</a>
+        <a href="#cultural-maps">Cultural Variations</a>
+        <a href="#eda-insights">Data Insights (EDA)</a>
+    </nav>
+
+    <div class="app-container">
+        
+        <aside class="sidebar">
+            <div class="control-group">
+                <h3>Explore & Filter</h3>
+                <label for="cuisine-select">Filter by Cuisine:</label>
+                <select id="cuisine-select">
+                    <option value="all">Global (All Cuisines)</option>
+                    <option value="western">Western</option>
+                    <option value="eastern">East Asian</option>
+                </select>
+
+                <label for="ingredient-search" style="margin-top: 1rem; display: block;">Search Ingredient:</label>
+                <input type="text" id="ingredient-search" placeholder="e.g., Tomato, Basil...">
+            </div>
+
+            <div class="info-panel" id="node-details">
+                <h3>Selection Details</h3>
+                <p style="color: #7f8c8d; font-style: italic;">Click an ingredient or compound in the graph to view its chemical relationships and flavor profile.</p>
+                </div>
+
+            <div class="control-group">
+                <h3>Recipe Generator</h3>
+                <p style="font-size: 0.9rem;">Generate science-based ingredient pairings based on shared volatile compounds.</p>
+                <button class="primary-btn" id="generate-btn">Generate Pairing</button>
+            </div>
+        </aside>
+
+        <main class="viz-area">
+            
+            <section class="viz-card" id="network-explorer">
+                <h2>The Bipartite Flavor Web</h2>
+                <p style="margin-top: 0; font-size: 0.95rem;">Ingredients on the left, underlying chemical compounds on the right.</p>
+                <div class="d3-container" id="bipartite-graph-container">
+                    [ D3.js Interactive Bipartite Graph Placeholder ]
+                </div>
+            </section>
+
+            <section class="viz-card" id="cultural-maps" style="min-height: 500px;">
+                <h2>Cultural Flavor Variations</h2>
+                <p style="margin-top: 0; font-size: 0.95rem;">Comparing overlapping vs. contrasting flavor pairings across global cuisines.</p>
+                <div class="d3-container" id="map-container">
+                    [ Interactive Map / Regional Network Placeholder ]
+                </div>
+            </section>
+
+            <section class="viz-card" id="eda-insights" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                <h2>Exploratory Data Analysis</h2>
+                <div class="eda-grid">
+                    <div class="eda-chart">[ EDA: Most Used Ingredients ]</div>
+                    <div class="eda-chart">[ EDA: Most Used Categories by Country ]</div>
+                    <div class="eda-chart">[ EDA: Top 20 Ingredients Paired Together ]</div>
+                    <div class="eda-chart">[ EDA: Most Common Shared Compounds ]</div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
