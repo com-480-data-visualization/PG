@@ -8,7 +8,7 @@
 
 ## Website
 
-https://com-480-data-visualization.github.io/PG/#eda-insights
+https://com-480-data-visualization.github.io/PG
 
 ## Milestones
 [Milestone 1](./milestones/Milestone1.md) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
