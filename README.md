@@ -20,7 +20,7 @@ https://com-480-data-visualization.github.io/PG
 
 ## Milestone 2 (17th April, 5pm)
 
-[Milestone 2](#milestone-2)
+[Milestone 2](./milestones/Milestone2.md)
 
 
 ## Milestone 3 (29th May, 5pm)
