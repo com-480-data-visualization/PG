@@ -25,7 +25,7 @@ visualization/widgets
 
 ### Visualization 1: Bipartite Graph
 
-INSERT IMAGE HERE
+![Bipartite Graph](./images/viz1-described.png)
 
 - Desciption:  A dual-layered network graph. The left axis contains nodes representing ingredients (e.g., Tomato, Basil), and the right axis contains nodes representing hidden chemical compounds (e.g., Linalool). Edges connect ingredients to their constituent compounds. Clicking an ingredient highlights its specific chemical makeup and traces lines back to unexpected ingredients that share those exact compounds.
 - Tools needed: The primary tool needed will be the D3.js library especially its focus on making graphs. 
@@ -33,7 +33,7 @@ INSERT IMAGE HERE
 
 ### Visualization 2: Interactive Map
 
-INSERT IMAGE HERE
+![Interactive Map](./images/viz2.png)
 
 - Description: An interactive world map serving as the gateway to global recipes. Users can click on a continent, zoom into a specific region, and select traditional recipes. Once a recipe is selected, the visualization dynamically morphs to show the internal chemical network of that specific dish.
 - Tools needed: The visualization will require a combination of D3.js and specialized geographic data formats, such as TopoJSON or GeoJSON. The d3-geo module will be used for rendering the interactive world map, handling the mathematical projections required to display the globe on a flat screen, and managing the zoom and pan interactivity when a user selects a specific continent or country. Once a region is clicked and a recipe is chosen, we will transition to standard D3 SVG drawing techniques to render the localized recipe sub-graphs using our merged data.
@@ -41,7 +41,7 @@ INSERT IMAGE HERE
 
 ### Visualization 3: Ingredients Search Bar
 
-INSERT IMAGE HERE
+![Ingredients Search Bar](./images/viz3.png)
 
 - Description: A research bar interface where users search for a specific ingredient (autocompleted with the user's input). The visualization outputs the most traditional pairings (e.g Tomato with Mozarella) or the most unconventional pairings (e.g Tomato with Black Tea)
 - Tools needed: This visualization will heavily rely on vanilla JavaScript. We will then use D3.js to show bubbles with the compounds.
