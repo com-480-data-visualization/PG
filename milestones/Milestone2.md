@@ -33,7 +33,7 @@ visualization/widgets
 
 ### Visualization 2: Interactive Map
 
-![Interactive Map](./images/viz2.png)
+![Interactive Map](./images/viz2-described.png)
 
 - Description: An interactive world map serving as the gateway to global recipes. Users can click on a continent, zoom into a specific region, and select traditional recipes. Once a recipe is selected, the visualization dynamically morphs to show the internal chemical network of that specific dish.
 - Tools needed: The visualization will require a combination of D3.js and specialized geographic data formats, such as TopoJSON or GeoJSON. The d3-geo module will be used for rendering the interactive world map, handling the mathematical projections required to display the globe on a flat screen, and managing the zoom and pan interactivity when a user selects a specific continent or country. Once a region is clicked and a recipe is chosen, we will transition to standard D3 SVG drawing techniques to render the localized recipe sub-graphs using our merged data.
