@@ -13,39 +13,7 @@
         <p>Bridging the gap between academic chemistry and cooking</p>
     </header>
 
-    <nav>
-        <a href="#network-explorer">Network Explorer</a>
-        <a href="#cultural-maps">Cultural Variations</a>
-        <a href="#eda-insights">Data Insights (EDA)</a>
-    </nav>
-
     <div class="app-container">
-        
-        <aside class="sidebar">
-            <div class="control-group">
-                <h3>Explore & Filter</h3>
-                <label for="cuisine-select">Filter by Cuisine:</label>
-                <select id="cuisine-select">
-                    <option value="all">Global (All Cuisines)</option>
-                    <option value="western">Western</option>
-                    <option value="eastern">East Asian</option>
-                </select>
-
-                <label for="ingredient-search" style="margin-top: 1rem; display: block;">Search Ingredient:</label>
-                <input type="text" id="ingredient-search" placeholder="e.g., Tomato, Basil...">
-            </div>
-
-            <div class="info-panel" id="node-details">
-                <h3>Selection Details</h3>
-                <p style="color: #7f8c8d; font-style: italic;">Click an ingredient or compound in the graph to view its chemical relationships and flavor profile.</p>
-                </div>
-
-            <div class="control-group">
-                <h3>Recipe Generator</h3>
-                <p style="font-size: 0.9rem;">Generate science-based ingredient pairings based on shared volatile compounds.</p>
-                <button class="primary-btn" id="generate-btn">Generate Pairing</button>
-            </div>
-        </aside>
 
         <main class="viz-area">
             
@@ -66,6 +34,7 @@
             </section>
 
             <section class="viz-card" id="eda-insights" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                <h2>Pairing Oracle</h2>
                 <p style="margin-top: 0; font-size: 0.95rem;">type in an ingredients and discover the best (or worst!) pairings.</p>
                 <div class="d3-container" id="bipartite-graph-container">
                     <img src="milestones/images/viz3.png" alt="Pairing Oracle" style="max-width: 100%; height: auto;">
