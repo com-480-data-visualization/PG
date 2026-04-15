@@ -11,7 +11,7 @@
 https://com-480-data-visualization.github.io/PG
 
 ## Milestones
-[Milestone 1](./milestones/Milestone1.md) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
+[Milestone 1](./milestones/Milestone1.md) • [Milestone 2](./milestones/Milestone2.md) • [Milestone 3](#milestone-3)
 
 ## Milestone 1 (20th March, 5pm)
 
