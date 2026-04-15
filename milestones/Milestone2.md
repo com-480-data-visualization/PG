@@ -46,3 +46,13 @@ visualization/widgets
 - Description: A research bar interface where users search for a specific ingredient (autocompleted with the user's input). The visualization outputs the most traditional pairings (e.g Tomato with Mozarella) or the most unconventional pairings (e.g Tomato with Black Tea)
 - Tools needed: This visualization will heavily rely on vanilla JavaScript. We will then use D3.js to show bubbles with the compounds.
 - Lectures needed: Lecture: D3.js, Lecture: Interactions, Lecture: JavaScript part 1 and part 2
+
+
+
+
+## Extra Ideas
+
+1. Substitution finder : a simple 2D scatterplot where a user's chosen ingredient (e.g., Basil) is plotted at the center (0,0). All other ingredients in the dataset are plotted around it based on their "chemical distance" (how many compounds they share). The closer a node is to the center, the better of a substitute it is.This allows users to find bizarre but scientifically sound culinary substitutes.
+
+2. The Tasty Crousty Mini-Game : The user is presented with two ingredients side-by-side, and we ask them to guess if these share a dominant flavor compound or not (The user votes Yes or No).
+3. 
