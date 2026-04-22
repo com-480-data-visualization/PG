@@ -224,3 +224,71 @@ button.primary-btn:active {
 .d3-container img {
     border-radius: 12px;
 }
+
+.viz-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+.control-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 1rem;
+    display: none;
+    min-width: 200px;
+}
+
+.control-dropdown.active {
+    display: block;
+}
+
+#search-results {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#search-results li {
+    padding: 0.5rem;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f2f6;
+    font-size: 0.9rem;
+}
+
+#search-results li:hover {
+    background: var(--flavor-mango);
+    color: white;
+}
+
+.radio-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.radio-group input[type="radio"] {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+}

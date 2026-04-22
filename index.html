@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Flavor Network | Culinary Chemistry</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
 
@@ -26,9 +27,33 @@
             <section class="viz-card" id="network-explorer">
                 <h2>The hidden chemical compounds in food</h2>
                 <p>Ingredients on the left, underlying chemical compounds on the right.</p>
-                <div class="d3-container" id="bipartite-graph-container">
-                    <img src="milestones/images/viz1.png" alt="Bipartite Graph Visualization" style="max-width: 100%; height: auto;">
+                <div class="d3-container" id="bipartite-graph-container" style="flex-direction: column; align-items: stretch; padding: 1rem; position: relative;">
+    
+            <div class="viz-controls">
+                <div style="position: relative;">
+                    <button class="primary-btn" id="btn-ingredients" style="margin-top: 0; padding: 0.5rem 1rem;">🔍 Add Ingredient</button>
+                    <div class="control-dropdown" id="menu-ingredients">
+                        <input type="text" id="ingr-search" placeholder="Type an ingredient..." style="margin-top: 0;">
+                        <ul id="search-results"></ul>
+                    </div>
                 </div>
+
+                <div style="position: relative;">
+                    <button class="primary-btn" id="btn-compounds" style="margin-top: 0; padding: 0.5rem 1rem; background: var(--flavor-blueberry);">⚙️ Filter Compounds</button>
+                   <div class="control-dropdown" id="menu-compounds" style="right: 0; left: auto;">
+                        <div class="radio-group">
+                            <label><input type="radio" name="comp-filter" value="all" checked> Show All Compounds</label>
+                            <label><input type="radio" name="comp-filter" value="shared"> Shared Compounds</label>
+                            <label><input type="radio" name="comp-filter" value="unique"> Unique Compounds</label>
+                            <label><input type="radio" name="comp-filter" value="all-shared"> Shared by All</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div id="svg-wrapper" style="flex: 1; min-height: 400px; width: 100%; overflow-y: auto; overflow-x: hidden;"></div>
+
+            </div>
             </section>
 
             <section class="viz-card" id="cultural-maps">
