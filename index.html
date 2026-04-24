@@ -6,6 +6,8 @@
     <title>The Flavor Network | Culinary Chemistry</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
 </head>
 <body>
 
@@ -59,8 +61,32 @@
             <section class="viz-card" id="cultural-maps">
                 <h2>Chemistry of world cuisine</h2>
                 <p>Comparing flavor pairings across global cuisines.</p>
-                <div class="d3-container" id="map-container">
-                    <img src="milestones/images/viz2.png" alt="Cultural culinary map" style="max-width: 100%; height: auto;">
+                <div class="viz2-container">
+                    <div id="map-area"></div>
+                    
+                    <div id="recipes-area">
+                        <div id="recipe-list-panel">
+                            <h3 id="region-title">Select a Recipe</h3>
+                            <input type="text" id="recipe-search" placeholder="Search recipes in region...">
+                            <ul id="recipe-list"></ul>
+                        </div>
+
+                        <div id="graph-panel">
+                            <button id="back-to-recipes">⬅ Back</button>
+                            <h3 id="recipe-title">Recipe Graph</h3>
+                            <div id="circular-graph"></div>
+
+                            <div id="compounds-panel">
+                                <div class="panel-header">
+                                    <button id="close-compounds">x</button>
+                                    <h4>Shared Compounds</h4>
+                                    <p id="edge-ingredients-label"></p>
+                                </div>
+                                
+                                <ul id="shared-compounds-list"></ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
