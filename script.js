@@ -78,6 +78,78 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // If the section scrolls into view
+            if (entry.isIntersecting) {
+                // Check which section it is
+                if (entry.target.id === 'network-explorer') {
+                    // Start animating or initializing Viz 1
+                    console.log("User reached the Bipartite Graph!");
+                }
+                if (entry.target.id === 'cultural-maps') {
+                    console.log("User reached the Map!");
+                }
+            }
+        });
+    }, { threshold: 0.5 }); // Triggers when 50% of the section is visible
+
+    document.querySelectorAll('.viz-card').forEach(card => {
+        observer.observe(card);
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const scrollContainer = document.getElementById('cultural-maps');
+    const leftBtn = document.getElementById('scroll-left-btn');
+    const rightBtn = document.getElementById('scroll-right-btn');
+
+    if (!scrollContainer || !leftBtn || !rightBtn) return;
+
+    // Function to check scroll position and hide/show arrows
+    function updateArrows() {
+        const buffer = 50; 
+
+        // If we are near the very left, hide the left arrow
+        if (scrollContainer.scrollLeft <= buffer) {
+            leftBtn.classList.add('hidden');
+        } else {
+            leftBtn.classList.remove('hidden');
+        }
+
+        // Calculate max scroll distance
+        const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        
+        // If we are near the very right, hide the right arrow
+        if (Math.ceil(scrollContainer.scrollLeft) >= maxScrollLeft - buffer) {
+            rightBtn.classList.add('hidden');
+        } else {
+            rightBtn.classList.remove('hidden');
+        }
+    }
+
+    // Scroll to the left when the left arrow is clicked
+    leftBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+    });
+
+    // Scroll to the right when the right arrow is clicked
+    rightBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+    });
+
+    // Listen for manual scrolling
+    scrollContainer.addEventListener('scroll', updateArrows);
+    
+    // Listen for window resizes just in case
+    window.addEventListener('resize', updateArrows);
+
+    // Run it once on load to ensure the left arrow starts hidden
+    updateArrows();
+});
+
 // ----- Viz 1 ----- //
 async function initBipartiteGraph() {
     const wrapper = d3.select("#svg-wrapper");

@@ -25,77 +25,98 @@
     <div class="app-container">
 
         <main class="viz-area">
-            
-            <section class="viz-card" id="network-explorer">
-                <h2>The hidden chemical compounds in food</h2>
-                <p>Ingredients on the left, underlying chemical compounds on the right.</p>
-                <div class="d3-container" id="bipartite-graph-container" style="flex-direction: column; align-items: stretch; padding: 1rem; position: relative;">
-    
-            <div class="viz-controls">
-                <div style="position: relative;">
-                    <button class="primary-btn" id="btn-ingredients" style="margin-top: 0; padding: 0.5rem 1rem;">🔍 Add Ingredient</button>
-                    <div class="control-dropdown" id="menu-ingredients">
-                        <input type="text" id="ingr-search" placeholder="Type an ingredient..." style="margin-top: 0;">
-                        <ul id="search-results"></ul>
-                    </div>
-                </div>
 
-                <div style="position: relative;">
-                    <button class="primary-btn" id="btn-compounds" style="margin-top: 0; padding: 0.5rem 1rem; background: var(--flavor-blueberry);">⚙️ Filter Compounds</button>
-                   <div class="control-dropdown" id="menu-compounds" style="right: 0; left: auto;">
-                        <div class="radio-group">
-                            <label><input type="radio" name="comp-filter" value="all" checked> Show All Compounds</label>
-                            <label><input type="radio" name="comp-filter" value="shared"> Shared Compounds</label>
-                            <label><input type="radio" name="comp-filter" value="unique"> Unique Compounds</label>
-                            <label><input type="radio" name="comp-filter" value="all-shared"> Shared by All</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-                <div id="svg-wrapper" style="flex: 1; min-height: 400px; width: 100%; overflow-y: auto; overflow-x: hidden;"></div>
-
-            </div>
+            <section class="viz-card" style="justify-content: center; text-align: center; flex-direction: column;">
+                <h1 style="font-size: 3rem; color: var(--flavor-strawberry);">The Invisible Rules of Flavor</h1>
+                <p style="font-size: 1.5rem; max-width: 800px;">Cooking often feels like magic, but at its core, it is pure chemistry. Scroll down to explore the raw data behind what makes our food taste good.</p>
+                <p style="font-size: 2rem; margin-top: 2rem; animation: bounce 2s infinite;">⬇️</p>
             </section>
 
-            <section class="viz-card" id="cultural-maps">
-                <h2>Chemistry of world cuisine</h2>
-                <p>Comparing flavor pairings across global cuisines.</p>
-                <div class="viz2-container">
-                    <div id="map-area"></div>
-                    
-                    <div id="recipes-area">
-                        <div id="recipe-list-panel">
-                            <h3 id="region-title">Select a Recipe</h3>
-                            <input type="text" id="recipe-search" placeholder="Search recipes in region...">
-                            <ul id="recipe-list"></ul>
-                        </div>
-
-                        <div id="graph-panel">
-                            <button id="back-to-recipes">⬅ Back</button>
-                            <h3 id="recipe-title">Recipe Graph</h3>
-                            <div id="circular-graph"></div>
-
-                            <div id="compounds-panel">
-                                <div class="panel-header">
-                                    <button id="close-compounds">x</button>
-                                    <h4>Shared Compounds</h4>
-                                    <p id="edge-ingredients-label"></p>
+            <section class="viz-card" id="network-explorer">
+                <div class="viz-text-content">
+                    <h2>1. The Hidden Chemistry</h2>
+                    <p>Every ingredient in your kitchen is a complex matrix of chemical compounds. When two ingredients share a high number of these flavor compounds, they are scientifically more likely to taste good together.</p>
+                    <p><strong>Try it yourself:</strong> Use the graph to connect ingredients on the left to their underlying chemical compounds on the right. Try adding an ingredient like Strawberry and tracing its lines.</p>
+                </div>
+                
+                <div class="d3-container" id="bipartite-graph-container">
+                    <div style="display: flex; flex-direction: column; width: 100%; height: 100%;">
+                        <div class="viz-controls">
+                            <button id="btn-ingredients" class="primary-btn">Ingredients ▾</button>
+                            <div id="menu-ingredients" class="control-dropdown">
+                                <input type="text" id="ingr-search" placeholder="Search ingredient...">
+                                <ul id="search-results"></ul>
+                            </div>
+                            
+                            <button id="btn-compounds" class="primary-btn">Compounds ▾</button>
+                            <div id="menu-compounds" class="control-dropdown">
+                                <div class="radio-group">
+                                    <label><input type="radio" name="comp-filter" value="all" checked> All</label>
+                                    <label><input type="radio" name="comp-filter" value="shared"> Shared</label>
+                                    <label><input type="radio" name="comp-filter" value="unique"> Unique</label>
+                                    <label><input type="radio" name="comp-filter" value="all-shared"> All Shared</label>
                                 </div>
-                                
-                                <ul id="shared-compounds-list"></ul>
+                            </div>
+                        </div>
+                        <div id="svg-wrapper" style="width: 100%; flex: 1;"></div> 
+                    </div>
+                </div>
+            </section>
+
+            <section class="viz-card" id="cultural-maps-wrapper" style="padding: 0; position: relative; border: none;">
+        
+                <button id="scroll-left-btn" class="nav-arrow left-arrow hidden">❮</button>
+                <button id="scroll-right-btn" class="nav-arrow right-arrow">❯</button>
+
+                <div class="horizontal-section" id="cultural-maps">
+                    
+                    <div class="h-slide">
+                        <div class="viz-text-content" style="max-width: 800px; margin: 0 auto;">
+                            <h2>2. Chemistry of World Cuisine</h2>
+                            <p>If flavor pairings are governed by chemistry, do different cultures intuitively know these rules? For centuries, humans have been experimenting with local ingredients, naturally gravitating toward combinations that share chemical bonds.</p>
+                            <p><strong>Try it yourself:</strong> Compare flavor pairings across global cuisines by clicking on the interactive world map. Zoom into a specific region, select a traditional recipe, and watch the visualization dynamically morph.</p>
+                            
+                            <p class="scroll-right-cue">Use the arrows or scroll right to explore the map <span>→</span></p>
+                        </div>
+                    </div>
+
+                    <div class="h-slide">
+                        <div class="viz2-container full-width-viz">
+                            <div id="map-area"></div>
+                            <div id="recipes-area">
+                                <div id="recipe-list-panel">
+                                    <h3 id="region-title"></h3>
+                                    <input type="text" id="recipe-search" placeholder="Search recipe...">
+                                    <ul id="recipe-list"></ul>
+                                </div>
+                                <div id="graph-panel">
+                                    <button id="back-to-recipes">← Back</button>
+                                    <h3 id="recipe-title"></h3>
+                                    <div id="circular-graph"></div>
+                                    <div id="compounds-panel">
+                                        <div class="panel-header">
+                                            <span id="edge-ingredients-label" style="font-weight: bold; font-size: 0.9rem;"></span>
+                                            <button id="close-compounds">×</button>
+                                        </div>
+                                        <ul id="shared-compounds-list"></ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </section>
 
             <section class="viz-card" id="eda-insights">
-                <h2>Pairing Oracle</h2>
-                <p>Type in an ingredient and discover the best (or worst!) pairings.</p>
-                <div class="d3-container" id="oracle-container">
-                    <img src="milestones/images/viz3.png" alt="Pairing Oracle" style="max-width: 100%; height: auto;">
+                <div class="viz-text-content">
+                    <h2>3. The Pairing Oracle</h2>
+                    <p>We've seen the science, and we've explored the traditions. Now, it's time to break the rules—or write new ones. Whether you want to master a classic dish or invent a bizarre new fusion, the data can guide you.</p>
+                    <p><strong>Try it yourself:</strong> Type an ingredient below to discover its best or worst scientific pairings.</p>
                 </div>
+
+                <div class="d3-container" id="oracle-container">
+                    </div>
             </section>
 
         </main>

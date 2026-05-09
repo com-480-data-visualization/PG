@@ -11,6 +11,10 @@
     --flavor-blueberry: #3742fa;
 }
 
+html {
+    scroll-snap-type: y mandatory;
+}
+
 body {
     font-family: 'Quicksand', system-ui, sans-serif;
     margin: 0;
@@ -80,10 +84,8 @@ nav a:hover {
 }
 
 .app-container {
-    display: flex;
+    display: block;
     flex: 1;
-    overflow: hidden;
-    height: calc(100vh - 160px);
 }
 
 .sidebar {
@@ -184,25 +186,27 @@ button.primary-btn:active {
 }
 
 .viz-area {
-    flex: 1;
-    padding: 2.5rem;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
-    overflow-y: auto;
-    scroll-behavior: smooth;
 }
 
 .viz-card {
     background: var(--panel-bg);
-    border-radius: 20px;
-    border: 2px solid transparent;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    min-height: 400px;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    padding: 4rem 10%;
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always; 
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
-    transition: border-color 0.3s ease; 
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+    box-shadow: none;
+    box-sizing: border-box;
+    border-radius: 0;
 }
 
 .viz-card:nth-child(1):hover { border-color: var(--flavor-strawberry); }
@@ -219,6 +223,12 @@ button.primary-btn:active {
 .viz-card p {
     color: #747d8c;
     font-weight: 500;
+}
+
+.viz-text-content {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 .d3-container img {
@@ -315,18 +325,27 @@ button.primary-btn:active {
     display: block;
 }
 
-.viz2-container {
-    display: flex;
-    width: 100%;
-    height: 1400px;
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
+
+.d3-container, .viz2-container {
+    flex: 1.5; 
+    height: 80vh;
     background: var(--panel-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    padding: 2rem;
+}
+.d3-container, .viz2-container {
+    display: flex;
+    height: 80vh;
+    border-radius: 20px;
+    background: var(--panel-bg);
+    flex: 1.5;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    padding: 2rem;
 }
 
 #map-area {
-    flex: 2;
+    flex: 1.4;
     border-right: 1px solid var(--border-color);
     overflow: hidden;
 }
@@ -365,6 +384,9 @@ button.primary-btn:active {
     display: none;
     flex: 1;
     position: relative;
+    flex-direction: column;
+    align-items: center;   
+    width: 100%;
 }
 
 #back-to-recipes {
@@ -383,13 +405,19 @@ button.primary-btn:active {
 
 #recipe-title {
     text-align: center;
-    margin-top: 0;
-    padding-left: 50px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0 60px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #circular-graph {
     width: 100%;
-    aspect-ratio: 1/1;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #compounds-panel {
@@ -442,4 +470,108 @@ button.primary-btn:active {
     margin: 0;
     overflow-y: auto;
     flex: 1; 
+}
+
+.viz-card.horizontal-section {
+    padding: 0; 
+    gap: 0;
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    scroll-snap-type: x mandatory;
+}
+
+.viz-card.horizontal-section::-webkit-scrollbar {
+    display: none;
+}
+
+.horizontal-section {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.horizontal-section::-webkit-scrollbar {
+    display: none;
+}
+
+.h-slide {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 4rem 10%;
+}
+
+.full-width-viz {
+    width: 100%;
+    height: 85vh;
+    flex: 1;
+}
+
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--flavor-mango);
+    color: var(--flavor-mango);
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.nav-arrow:hover {
+    background: var(--flavor-mango);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.left-arrow {
+    left: 20px;
+}
+
+.right-arrow {
+    right: 20px;
+}
+
+.nav-arrow.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scroll-right-cue {
+    margin-top: 3rem;
+    font-size: 1.2rem;
+    color: var(--flavor-mango);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.scroll-right-cue span {
+    animation: slideRight 1.5s infinite;
+}
+
+@keyframes slideRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(15px); }
 }
