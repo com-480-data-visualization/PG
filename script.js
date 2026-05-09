@@ -49,9 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("graph-panel").addEventListener("click", () => {
         const compoundsPanel = d3.select("#compounds-panel");
         const links = d3.selectAll(".links path");
+
+        const isEdgeSelected = !links.filter(".selected-edge").empty();
         
         // If a compound panel is open
-        if (compoundsPanel.style("display") === "block") {
+        if (isEdgeSelected) {
             // If a user clicks outside of the compound panel, close it (if the user doesn't click on an edge of course)
             compoundsPanel.style("display", "none");
             links.classed("selected-edge", false);
