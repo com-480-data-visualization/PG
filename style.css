@@ -575,3 +575,16 @@ button.primary-btn:active {
     0%, 100% { transform: translateX(0); }
     50% { transform: translateX(15px); }
 }
+
+#menu-ingredients #ingr-search {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+    margin-top: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#menu-compounds {
+    left: auto;
+    right: 0;
+}
