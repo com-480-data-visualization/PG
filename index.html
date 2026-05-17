@@ -58,6 +58,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="lens-controls" style="display: flex; align-items: center; justify-content: flex-end; gap: 1rem; margin-bottom: 10px;">
+                            <label style="font-size: 0.9rem; font-weight: bold; color: var(--text-dark);">
+                                <input type="checkbox" id="toggle-lens" style="width: auto; margin-right: 5px;"> Enable Lens
+                            </label>
+                            
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <span style="font-size: 0.8rem; color: #747d8c;">1x</span>
+                                <input type="range" id="lens-zoom" min="1" max="10" value="2.5" step="0.5" style="width: 100px; margin: 0;">
+                                <span style="font-size: 0.8rem; color: #747d8c;">10x</span>
+                            </div>
+                        </div>
                         <div id="svg-wrapper" style="width: 100%; flex: 1;"></div> 
                     </div>
                 </div>

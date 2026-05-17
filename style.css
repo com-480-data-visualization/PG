@@ -588,3 +588,11 @@ button.primary-btn:active {
     left: auto;
     right: 0;
 }
+
+input[type="range"] {
+    padding: 0;
+    border: none;
+    background: transparent;
+    margin: 0;
+    box-shadow: none;
+}

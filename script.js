@@ -524,9 +524,106 @@ async function initBipartiteGraph() {
         .attr("width", "100%")
         .attr("height", "400px");
 
-    const linkGroup = svg.append("g").attr("class", "links");
-    const rightNodeGroup = svg.append("g").attr("class", "right-nodes");
-    const leftNodeGroup = svg.append("g").attr("class", "left-nodes");
+    const mainContent = svg.append("g").attr("id", "main-graph-content");
+
+    const linkGroup = mainContent.append("g").attr("class", "links");
+    const rightNodeGroup = mainContent.append("g").attr("class", "right-nodes");
+    const leftNodeGroup = mainContent.append("g").attr("class", "left-nodes");
+
+    let magSize = 400; 
+    const cursorOffset = 20; 
+    
+    // State variables controlled by the UI
+    let lensEnabled = false;
+    let magZoom = 2.5;
+
+    const toggleLensCheckbox = document.getElementById("toggle-lens");
+    const zoomSlider = document.getElementById("lens-zoom");
+
+    // Update state when user interacts with the controls
+    if (toggleLensCheckbox) {
+        toggleLensCheckbox.addEventListener("change", (e) => {
+            lensEnabled = e.target.checked;
+            if (!lensEnabled) magnifier.style("display", "none");
+        });
+    }
+
+    if (zoomSlider) {
+        zoomSlider.addEventListener("input", (e) => {
+            magZoom = parseFloat(e.target.value);
+        });
+    }
+
+    svg.append("defs").append("clipPath")
+        .attr("id", "mag-clip")
+        .append("rect")
+        .attr("id", "mag-clip-rect")
+        .attr("width", magSize)
+        .attr("height", magSize)
+        .attr("rx", 8);
+
+    const magnifier = svg.append("g")
+        .attr("class", "magnifier")
+        .style("pointer-events", "none")
+        .style("display", "none");
+
+    magnifier.append("rect")
+        .attr("id", "mag-bg-rect")
+        .attr("width", magSize)
+        .attr("height", magSize)
+        .attr("fill", "white")
+        .attr("rx", 8);
+
+    const magContent = magnifier.append("g")
+        .attr("clip-path", "url(#mag-clip)");
+
+    const magUse = magContent.append("use")
+        .attr("href", "#main-graph-content")
+        .attr("xlink:href", "#main-graph-content");
+
+    magnifier.append("rect")
+        .attr("id", "mag-border-rect")
+        .attr("width", magSize)
+        .attr("height", magSize)
+        .attr("fill", "none")
+        .attr("stroke", "var(--flavor-mango)")
+        .attr("stroke-width", 3)
+        .attr("rx", 8);
+
+    // Track the mouse
+    svg.on("mousemove", function(event) {
+        // If the lens is disabled via the checkbox, do nothing
+        if (!lensEnabled) return; 
+
+        // Always show the lens now, no matter what side of the graph we are on
+        magnifier.style("display", "block");
+
+        const [mx, my] = d3.pointer(event);
+
+        // Calculate X position
+        let boxX;
+        if (mx > width / 2) {
+            boxX = mx - magSize - cursorOffset;
+        } else {
+            boxX = mx + cursorOffset;
+        }
+
+        // Calculate Y position
+        let boxY = my + cursorOffset;
+        if (boxY + magSize > parseInt(svg.attr("height") || 400)) {
+            boxY = my - magSize - cursorOffset;
+        }
+
+        // Move the physical box
+        magnifier.attr("transform", `translate(${boxX}, ${boxY})`);
+
+        // Pan the cloned image inside the box so the mouse's target is perfectly centered
+        const tx = (magSize / 2) - (mx * magZoom);
+        const ty = (magSize / 2) - (my * magZoom);
+        magUse.attr("transform", `translate(${tx}, ${ty}) scale(${magZoom})`);
+    });
+
+    svg.on("mouseleave", () => magnifier.style("display", "none"));
 
     try {
         const ingrInfo = await d3.tsv("data/ingr_info.tsv");
@@ -639,15 +736,26 @@ async function initBipartiteGraph() {
 
             const finalEdges = activeEdges.filter(d => activeCompoundIds.includes(d["compound id"]));
 
-            const minHeight = 400;
-            const requiredHeight = Math.max(minHeight, activeCompoundIds.length * 14); 
+            const physicalHeight = 400;
+            const requiredHeight = Math.max(physicalHeight, activeCompoundIds.length * 14);
+            
+            magSize = Math.max(120, activeCompoundIds.length * 5 + 50);
+
+            // Smoothly animate the lens rectangles to their new size!
+            d3.select("#mag-clip-rect").transition().duration(300).attr("width", magSize).attr("height", magSize);
+            d3.select("#mag-bg-rect").transition().duration(300).attr("width", magSize).attr("height", magSize);
+            d3.select("#mag-border-rect").transition().duration(300).attr("width", magSize).attr("height", magSize);
+
+            const scaleFactor = requiredHeight / physicalHeight;
+            
+            const logicalWidth = width * scaleFactor; 
 
             svg.transition().duration(300)
-               .attr("height", requiredHeight)
-               .attr("viewBox", [0, 0, width, requiredHeight]);
+               .attr("height", physicalHeight)
+               .attr("viewBox", [0, 0, logicalWidth, requiredHeight]);
 
             const leftX = margin.left;
-            const rightX = width - margin.right;
+            const rightX = logicalWidth - margin.right;
             
             const yScaleLeft = d3.scalePoint()
                 .domain(Array.from(activeIngredientIds))
