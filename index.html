@@ -122,12 +122,23 @@
             <section class="viz-card" id="eda-insights">
                 <div class="viz-text-content">
                     <h2>3. The Pairing Oracle</h2>
-                    <p>We've seen the science, and we've explored the traditions. Now, it's time to break the rules—or write new ones. Whether you want to master a classic dish or invent a bizarre new fusion, the data can guide you.</p>
-                    <p><strong>Try it yourself:</strong> Type an ingredient below to discover its best or worst scientific pairings.</p>
+                    <p>We've seen the science, and we've explored the traditions. Now, it's time to break the rules, or write new ones. Whether you want to master a classic dish or invent a bizarre new fusion, the data can guide you.</p>
+                    <p><strong>Try it yourself:</strong> Type an ingredient below to discover its best or worst scientific pairings based on their shared chemical structures.</p>
                 </div>
 
-                <div class="d3-container" id="oracle-container">
+                <div class="d3-container" id="oracle-container" style="flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 2rem;">
+                    
+                    <div class="oracle-controls" style="margin-bottom: 30px; display: flex; gap: 10px; align-items: center;">
+                        <label for="oracle-search" style="font-weight: bold; font-family: sans-serif; font-size: 1.1rem;">Base ingredient: </label>
+                        <div style="position: relative;">
+                            <input type="text" id="oracle-search" placeholder="Type Tomato..." style="width: 300px; padding: 10px; border-radius: 5px; border: 2px solid var(--border-color); font-size: 1rem; background-color: var(--panel-bg);">
+                            <ul id="oracle-autocomplete" class="control-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--panel-bg); z-index: 100; max-height: 200px; overflow-y: auto; list-style: none; padding: 0; margin: 0; border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 5px 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"></ul>
+                        </div>
+                        <button id="oracle-random-btn" class="primary-btn">Random ingredient</button>
                     </div>
+
+                    <div id="oracle-viz-container" style="width: 100%; max-width: 900px; display: flex; justify-content: center;"></div>
+                </div>
             </section>
 
         </main>
