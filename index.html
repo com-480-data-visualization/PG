@@ -26,18 +26,50 @@
 
         <main class="viz-area">
 
-            <section class="viz-card" style="justify-content: center; text-align: center; flex-direction: column;">
-                <h1 style="font-size: 3rem; color: var(--flavor-strawberry);">The Invisible Rules of Flavor</h1>
-                <p style="font-size: 1.5rem; max-width: 800px;">Cooking often feels like magic, but at its core, it is pure chemistry. Scroll down to explore the raw data behind what makes our food taste good.</p>
-                <p style="font-size: 2rem; margin-top: 2rem; animation: bounce 2s infinite;">⬇️</p>
+        <section class="viz-card" style="justify-content: center; text-align: center; flex-direction: column; padding: 4rem 2rem;">        <h1 style="font-size: 3rem; color: var(--flavor-strawberry); margin-bottom: 1rem;">The Invisible Rules of Flavor</h1>
+    
+            <div style="max-width: 900px; margin: 0 auto; text-align: left; font-size: 1.15rem; line-height: 1.6; color: var(--text-dark);">
+                <p>
+                    The culinary world has long been driven by intuition, tradition, and the creative flair of chefs. But in 2011, researchers proposed a radical idea: the <strong>"Food Pairing Hypothesis."</strong> They suggested that the secret to a great dish isn't magic, but chemistry. According to this hypothesis, ingredients that share hidden molecular flavor compounds—the volatile chemicals responsible for taste and smell—are scientifically wired to taste delicious together. 
+                </p>
+                <p>
+                    Interestingly, this rule isn't universal. While Western cuisines tend to combine ingredients that share many of these compounds (think tomato and parmesan), East Asian cuisines often take the exact opposite approach, deliberately avoiding chemical overlap to create stark, contrasting flavor profiles.
+                </p>
+
+                <div style="background-color: var(--panel-bg); border-left: 4px solid var(--flavor-mango); padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="margin-top: 0; color: var(--flavor-strawberry);">The Science of Taste</h3>
+                    <ul style="margin-bottom: 0; padding-left: 1.5rem;">
+                        <li style="margin-bottom: 0.5rem;">Have you ever wondered why coffee and roasted beef share a surprisingly similar flavor profile?</li>
+                        <li style="margin-bottom: 0.5rem;">Do traditional recipes from your home country rely on chemical harmony, or do they thrive on chemical contrast?</li>
+                        <li>What happens if you throw out the cookbook and let a scientific algorithm dictate your next meal?</li>
+                    </ul>
+                </div>
+
+                <p>
+                    These are just a few of the mysteries you can unravel with this interactive culinary dataset!
+                </p>
+                
+                <ul style="list-style-type: none; padding: 0; margin-top: 1.5rem;">
+                    <li style="margin-bottom: 0.8rem;"><strong>🔬 Network Explorer:</strong> Discover the invisible chemical links connecting your favorite ingredients.</li>
+                    <li style="margin-bottom: 0.8rem;"><strong>🌍 Cultural Maps:</strong> Travel the globe, dissect traditional recipes, and visualize their unique chemical blueprints.</li>
+                    <li style="margin-bottom: 0.8rem;"><strong>🔮 Pairing Oracle:</strong> Enter a base ingredient to uncover its scientifically proven companions—or dare to try its most radical, unexpected pairings!</li>
+                </ul>
+                
+                <p style="text-align: center; font-style: italic; margin-top: 2rem; color: var(--flavor-blueberry);">
+                    This visualization is the perfect tool for foodies, amateur cooks, and professional chefs looking to master the invisible science of flavor.
+                </p>
+            </div>
+
+            <p style="font-size: 2.5rem; margin-top: 3rem; animation: bounce 2s infinite;">⬇️</p>
             </section>
 
-            <section class="viz-card" id="network-explorer">
-                <div class="viz-text-content">
-                    <h2>1. The Hidden Chemistry</h2>
-                    <p>Every ingredient in your kitchen is a complex matrix of chemical compounds. When two ingredients share a high number of these flavor compounds, they are scientifically more likely to taste good together.</p>
-                    <p><strong>Try it yourself:</strong> Use the graph to connect ingredients on the left to their underlying chemical compounds on the right. Try adding an ingredient like Strawberry and tracing its lines.</p>
-                </div>
+        <section class="viz-card" id="network-explorer">
+            <div class="viz-text-content">
+                <h2>1. The Hidden Chemistry</h2>
+                <p>Let us dive into the microscopic world of our food. The bipartite web below exposes the hidden molecular skeleton of the ingredients we eat every day. Why does a tomato pair so flawlessly with basil? It is not just culinary tradition; it is because they physically share dozens of identical volatile compounds, like <em>hexanal</em> and <em>linalool</em>.</p>
+                <p>Are there hidden bridges between sweet fruits and savory meats? Can we visualize the exact molecules that make roasted cocoa and cooked apples share a similar flavor profile? By mapping ingredients to their chemical makeup, we can scientifically prove why certain foods belong together.</p>
+                <p><strong>Try it yourself:</strong> Use the search bar to build your own network. Add an ingredient to the left axis, filter the chemical compounds on the right, and hover over the nodes to illuminate the chemical pathways that dictate our perception of taste. If the web gets too dense, enable the magnifying lens to inspect the intricate chemical clusters up close! To remove an ingredient, simply click on it.</p>
+            </div>
                 
                 <div class="d3-container" id="bipartite-graph-container">
                     <div style="display: flex; flex-direction: column; width: 100%; height: 100%;">
@@ -83,11 +115,12 @@
                     
                     <div class="h-slide">
                         <div class="viz-text-content" style="max-width: 800px; margin: 0 auto;">
-                            <h2>2. Chemistry of World Cuisine</h2>
-                            <p>If flavor pairings are governed by chemistry, do different cultures intuitively know these rules? For centuries, humans have been experimenting with local ingredients, naturally gravitating toward combinations that share chemical bonds.</p>
-                            <p><strong>Try it yourself:</strong> Compare flavor pairings across global cuisines by clicking on the interactive world map. Zoom into a specific region, select a traditional recipe, and watch the visualization dynamically morph.</p>
-                            
-                            <p class="scroll-right-cue">Use the arrows or scroll right to explore the map <span>→</span></p>
+                        <h2>2. Chemistry of World Cuisine</h2>
+                        <p>Do different cultures subconsciously understand food chemistry? By cross-referencing our chemical network with a database of over 45,000 global recipes, a fascinating geographical divide emerges. North American and Western European cuisines often build their dishes around ingredients that share heavily overlapping chemical compounds to create harmonious tastes. However, East Asian cuisines tend to do the exact opposite, intentionally pairing ingredients with almost zero chemical overlap to achieve vibrant, contrasting flavors.</p>
+                        <p>Does your favorite regional cuisine follow the rules of harmony, or the rules of contrast? Are traditional recipes naturally optimized for chemical bonds?</p>
+                        <p><strong>Try it yourself:</strong> Navigate the interactive map to test this hypothesis. Click on a highlighted region to load authentic regional recipes, then select a dish to generate its unique molecular fingerprint. Hover over the connecting lines to reveal exactly which chemical compounds the ingredients share. The thicker the line, the stronger the chemical bond between the foods!</p>
+                        
+                        <p class="scroll-right-cue">Use the arrows or scroll right to explore the map <span>→</span></p>
                         </div>
                     </div>
 
@@ -122,8 +155,9 @@
             <section class="viz-card" id="eda-insights">
                 <div class="viz-text-content">
                     <h2>3. The Pairing Oracle</h2>
-                    <p>We've seen the science, and we've explored the traditions. Now, it's time to break the rules, or write new ones. Whether you want to master a classic dish or invent a bizarre new fusion, the data can guide you.</p>
-                    <p><strong>Try it yourself:</strong> Type an ingredient below to discover its best or worst scientific pairings based on their shared chemical structures.</p>
+                    <p>We have explored the fundamental science of molecules and traveled through centuries of culinary tradition. Now, it is time to step into the laboratory and write your own recipes. The Pairing Oracle acts as an algorithmic chef, instantly calculating the mathematical affinity between thousands of ingredients.</p>
+                    <p>Are you looking to perfect a classic, comforting dish, or are you daring enough to invent a bizarre new culinary fusion?</p>
+                    <p><strong>Try it yourself:</strong> Enter a base ingredient in the search bar below to see what the data recommends. The <strong>Traditional</strong> column reveals ingredients that share the highest number of chemical compounds with your choice, practically guaranteeing a mathematically safe and delicious pairing. The <strong>Radical</strong> column suggests the exact opposite: ingredients that share almost nothing in common. Will you play it safe with science, or will you challenge your palate with a mathematically contrasting masterpiece?</p>
                 </div>
 
                 <div class="d3-container" id="oracle-container" style="flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 2rem;">

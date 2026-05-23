@@ -534,14 +534,12 @@ async function initBipartiteGraph() {
     let magSize = 400; 
     const cursorOffset = 20; 
     
-    // State variables controlled by the UI
     let lensEnabled = false;
     let magZoom = 2.5;
 
     const toggleLensCheckbox = document.getElementById("toggle-lens");
     const zoomSlider = document.getElementById("lens-zoom");
 
-    // Update state when user interacts with the controls
     if (toggleLensCheckbox) {
         toggleLensCheckbox.addEventListener("change", (e) => {
             lensEnabled = e.target.checked;
@@ -591,17 +589,13 @@ async function initBipartiteGraph() {
         .attr("stroke-width", 3)
         .attr("rx", 8);
 
-    // Track the mouse
     svg.on("mousemove", function(event) {
-        // If the lens is disabled via the checkbox, do nothing
         if (!lensEnabled) return; 
 
-        // Always show the lens now, no matter what side of the graph we are on
         magnifier.style("display", "block");
 
         const [mx, my] = d3.pointer(event);
 
-        // Calculate X position
         let boxX;
         if (mx > width / 2) {
             boxX = mx - magSize - cursorOffset;
@@ -609,16 +603,13 @@ async function initBipartiteGraph() {
             boxX = mx + cursorOffset;
         }
 
-        // Calculate Y position
         let boxY = my + cursorOffset;
         if (boxY + magSize > parseInt(svg.attr("height") || 400)) {
             boxY = my - magSize - cursorOffset;
         }
 
-        // Move the physical box
         magnifier.attr("transform", `translate(${boxX}, ${boxY})`);
 
-        // Pan the cloned image inside the box so the mouse's target is perfectly centered
         const tx = (magSize / 2) - (mx * magZoom);
         const ty = (magSize / 2) - (my * magZoom);
         magUse.attr("transform", `translate(${tx}, ${ty}) scale(${magZoom})`);
@@ -646,14 +637,19 @@ async function initBipartiteGraph() {
             logicalNames.some(logical => d.name.toLowerCase() === logical)
         );
 
-        let initialIds = [];
-        allIngredientsList.forEach(d => {
-            if (d.name.toLowerCase() === "tomato" || d.name.toLowerCase() === "basil") {
-                initialIds.push(d.id);
-            }
+        // Dynamically calculate the simplest ingredient for the default state
+        const ingredientConnectionCounts = d3.rollup(ingrComp, v => v.length, d => d["# ingredient id"]);
+        
+        featuredIngredients.sort((a, b) => {
+            const countA = ingredientConnectionCounts.get(a.id) || 0;
+            const countB = ingredientConnectionCounts.get(b.id) || 0;
+            return countA - countB;
         });
 
-        let activeIngredientIds = new Set(initialIds.length > 0 ? initialIds : [featuredIngredients[0].id, featuredIngredients[1].id]); 
+        // Pick the simplest one that still has at least a few connections to look nice
+        const simplestIngredient = featuredIngredients.find(d => (ingredientConnectionCounts.get(d.id) || 0) > 3) || featuredIngredients[0];
+
+        let activeIngredientIds = new Set([simplestIngredient.id]); 
         let compoundFilterMode = "all";
 
         const btnIngr = document.getElementById("btn-ingredients");
@@ -735,6 +731,12 @@ async function initBipartiteGraph() {
                 activeCompoundIds = activeCompoundIds.filter(id => compoundCounts.get(id) === activeIngredientIds.size);
             }
 
+            activeCompoundIds.sort((a, b) => {
+                const nameA = idToCompName.get(a) || "";
+                const nameB = idToCompName.get(b) || "";
+                return nameA.localeCompare(nameB);
+            });
+
             const finalEdges = activeEdges.filter(d => activeCompoundIds.includes(d["compound id"]));
 
             const physicalHeight = 400;
@@ -742,7 +744,6 @@ async function initBipartiteGraph() {
             
             magSize = Math.max(120, activeCompoundIds.length * 5 + 50);
 
-            // Smoothly animate the lens rectangles to their new size!
             d3.select("#mag-clip-rect").transition().duration(300).attr("width", magSize).attr("height", magSize);
             d3.select("#mag-bg-rect").transition().duration(300).attr("width", magSize).attr("height", magSize);
             d3.select("#mag-border-rect").transition().duration(300).attr("width", magSize).attr("height", magSize);
