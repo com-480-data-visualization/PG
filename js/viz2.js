@@ -466,7 +466,6 @@ function renderRecipeList(recipesToRender) {
         .on("click", (event, d) => buildCircularGraph(d));
 }
 
-let currentRegionRecipes = [];
 
 // Setup the panel and the search bar
 function showRecipesForRegion(regionName, allRecipes) {
