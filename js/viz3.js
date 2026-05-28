@@ -300,9 +300,9 @@ export function initPairingOracle() {
 
         // --- DRAW [ + ] and [ - ] ---
         const controlsData = [
-            { id: "t-plus", text: "[+]", x: data.tradCat.x, y: data.tradCat.y - 32, onClick: () => { if(numTraditional < 5) { numTraditional++; processOracle(currentBaseIngredient); } } },
+            { id: "t-plus", text: "[+]", x: data.tradCat.x, y: data.tradCat.y - 32, onClick: () => { if(numTraditional < 7) { numTraditional++; processOracle(currentBaseIngredient); } } },
             { id: "t-minus", text: "[-]", x: data.tradCat.x, y: data.tradCat.y + 42, onClick: () => { if(numTraditional > 1) { numTraditional--; processOracle(currentBaseIngredient); } } },
-            { id: "r-plus", text: "[+]", x: data.radCat.x, y: data.radCat.y - 32, onClick: () => { if(numRadical < 5) { numRadical++; processOracle(currentBaseIngredient); } } },
+            { id: "r-plus", text: "[+]", x: data.radCat.x, y: data.radCat.y - 32, onClick: () => { if(numRadical < 7) { numRadical++; processOracle(currentBaseIngredient); } } },
             { id: "r-minus", text: "[-]", x: data.radCat.x, y: data.radCat.y + 42, onClick: () => { if(numRadical > 1) { numRadical--; processOracle(currentBaseIngredient); } } }
         ];
 
