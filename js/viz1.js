@@ -14,7 +14,7 @@ export async function initBipartiteGraph() {
     const rightNodeGroup = mainContent.append("g").attr("class", "right-nodes");
     const leftNodeGroup = mainContent.append("g").attr("class", "left-nodes");
 
-    let magSize = 400; 
+    let magSize = 200; 
     const cursorOffset = 20; 
     
     let lensEnabled = false;
@@ -222,35 +222,35 @@ export async function initBipartiteGraph() {
 
             const finalEdges = activeEdges.filter(d => activeCompoundIds.includes(d["compound id"]));
 
-            const physicalHeight = 400;
-            const requiredHeight = Math.max(physicalHeight, activeCompoundIds.length * 14);
+            const containerHeight = wrapper.node().getBoundingClientRect().height || 500;
+            const requiredHeight = containerHeight;
             
-            magSize = Math.max(120, activeCompoundIds.length * 5 + 50);
+            magSize = Math.max(120, Math.min(250, activeCompoundIds.length * 5 + 50));
 
             d3.select("#mag-clip-rect").transition().duration(300).attr("width", magSize).attr("height", magSize);
             d3.select("#mag-bg-rect").transition().duration(300).attr("width", magSize).attr("height", magSize);
             d3.select("#mag-border-rect").transition().duration(300).attr("width", magSize).attr("height", magSize);
 
-            const scaleFactor = requiredHeight / physicalHeight;
-            
-            const logicalWidth = width * scaleFactor; 
-
             svg.transition().duration(300)
-               .attr("height", physicalHeight)
-               .attr("viewBox", [0, 0, logicalWidth, requiredHeight]);
+               .attr("height", requiredHeight)
+               .attr("viewBox", [0, 0, width, requiredHeight]);
 
             const leftX = margin.left;
-            const rightX = logicalWidth - margin.right;
+            const rightX = width - margin.right - 80;
             
             const yScaleLeft = d3.scalePoint()
                 .domain(Array.from(activeIngredientIds))
                 .range([margin.top, requiredHeight - margin.bottom])
-                .padding(0.5);
+                .padding(0.8);
 
             const yScaleRight = d3.scalePoint()
                 .domain(activeCompoundIds)
                 .range([margin.top, requiredHeight - margin.bottom])
-                .padding(0.5);
+                .padding(0.2);
+
+            const ingredientColors = d3.scaleOrdinal()
+                .domain(Array.from(activeIngredientIds))
+                .range(d3.schemeCategory10);
 
             const linkGenerator = d3.linkHorizontal().x(d => d.x).y(d => d.y);
 
@@ -259,15 +259,16 @@ export async function initBipartiteGraph() {
                 .join(
                     enter => enter.append("path")
                         .attr("fill", "none")
-                        .attr("stroke", "#dfe4ea")
+                        .attr("stroke", d => ingredientColors(d["# ingredient id"])) // Assigned here
                         .attr("stroke-width", 1.5)
                         .attr("stroke-opacity", 0)
                         .attr("d", d => linkGenerator({
                             source: { x: leftX, y: yScaleLeft(d["# ingredient id"]) },
                             target: { x: rightX, y: yScaleRight(d["compound id"]) }
                         }))
-                        .call(enter => enter.transition().duration(500).attr("stroke-opacity", 0.4)),
+                        .call(enter => enter.transition().duration(500).attr("stroke-opacity", 0.35)),
                     update => update.transition().duration(500)
+                        .attr("stroke", d => ingredientColors(d["# ingredient id"])) // Maintained here on layout shifts
                         .attr("d", d => linkGenerator({
                             source: { x: leftX, y: yScaleLeft(d["# ingredient id"]) },
                             target: { x: rightX, y: yScaleRight(d["compound id"]) }
@@ -284,29 +285,30 @@ export async function initBipartiteGraph() {
                             .style("cursor", "pointer")
                             .style("opacity", 0);
                             
-                        g.append("circle").attr("r", 6).attr("fill", "var(--flavor-strawberry)");
+                        // Node bubble matches link colors exactly
+                        g.append("circle").attr("r", 6).attr("fill", d => ingredientColors(d));
                         g.append("text").attr("x", -12).attr("y", 4).attr("text-anchor", "end").style("font-size", "12px").style("font-weight", "bold").attr("fill", "var(--text-dark)")
                          .text(d => idToIngrName.get(d) || "Unknown");
                          
                         g.on("mouseover", function(event, d) {
-                            d3.select(this).select("circle").attr("r", 9).attr("fill", "var(--flavor-mango)");
+                            d3.select(this).select("circle").attr("r", 9);
                             
                             const connectedCompIds = new Set(finalEdges.filter(e => e["# ingredient id"] === d).map(e => e["compound id"]));
 
                             linkGroup.selectAll("path")
-                                .style("stroke-opacity", linkData => linkData["# ingredient id"] === d ? 0.8 : 0.05)
-                                .style("stroke", linkData => linkData["# ingredient id"] === d ? "var(--flavor-mango)" : "#dfe4ea")
-                                .style("stroke-width", linkData => linkData["# ingredient id"] === d ? 2 : 1.5);
+                                .style("stroke-opacity", linkData => linkData["# ingredient id"] === d ? 0.85 : 0.04)
+                                .style("stroke-width", linkData => linkData["# ingredient id"] === d ? 2.5 : 1.5);
                                 
                             rightNodeGroup.selectAll("text")
                                 .style("font-weight", compD => connectedCompIds.has(compD) ? "bold" : "normal")
                                 .attr("fill", compD => connectedCompIds.has(compD) ? "var(--text-dark)" : "#747d8c");
                                 
                         }).on("mouseout", function() {
-                            d3.select(this).select("circle").attr("r", 6).attr("fill", "var(--flavor-strawberry)");
+                            d3.select(this).select("circle").attr("r", 6);
                             
                             linkGroup.selectAll("path")
-                                .style("stroke-opacity", 0.4).style("stroke", "#dfe4ea").style("stroke-width", 1.5);
+                                .style("stroke-opacity", 0.35)
+                                .style("stroke-width", 1.5);
                                 
                             rightNodeGroup.selectAll("text")
                                 .style("font-weight", "normal")
@@ -320,9 +322,14 @@ export async function initBipartiteGraph() {
 
                         return g.call(enter => enter.transition().duration(500).style("opacity", 1));
                     },
-                    update => update.transition().duration(500).attr("transform", d => `translate(${leftX},${yScaleLeft(d)})`),
+                    update => update.transition().duration(500)
+                        .attr("transform", d => `translate(${leftX},${yScaleLeft(d)})`)
+                        .select("circle").attr("fill", d => ingredientColors(d)),
                     exit => exit.transition().duration(300).style("opacity", 0).remove()
                 );
+
+            const stepSize = yScaleRight.step();
+            const dynamicFontSize = Math.max(5, Math.min(11, stepSize - 3));
 
             rightNodeGroup.selectAll("g")
                 .data(activeCompoundIds, d => d)
@@ -335,29 +342,34 @@ export async function initBipartiteGraph() {
                             
                         g.append("circle").attr("r", 3).attr("fill", "var(--flavor-blueberry)");
                         
-                        g.append("text").attr("x", 10).attr("y", 3).attr("text-anchor", "start").style("font-size", "10px").attr("fill", "#747d8c")
-                         .style("opacity", 1)
-                         .text(d => idToCompName.get(d) || "Unknown");
+                        g.append("text")
+                            .attr("x", 10)
+                            .attr("y", 3)
+                            .attr("text-anchor", "start")
+                            .attr("fill", "#747d8c")
+                            .text(d => idToCompName.get(d) || "Unknown");
 
                         g.on("mouseover", function(event, d) {
-                            d3.select(this).select("circle").attr("r", 6).attr("fill", "var(--flavor-matcha)");
+                            d3.select(this).select("circle").attr("r", 6).attr("fill", "var(--flavor-mango)");
                             d3.select(this).select("text").attr("fill", "var(--text-dark)").style("font-weight", "bold");
-                            linkGroup.selectAll("path")
-                                .style("stroke-opacity", linkData => linkData["compound id"] === d ? 0.8 : 0.05)
-                                .style("stroke", linkData => linkData["compound id"] === d ? "var(--flavor-matcha)" : "#dfe4ea")
-                                .style("stroke-width", linkData => linkData["compound id"] === d ? 2 : 1.5);
+                        linkGroup.selectAll("path")
+                                .style("stroke-opacity", linkData => linkData["compound id"] === d ? 0.9 : 0.04)
+                                .style("stroke-width", linkData => linkData["compound id"] === d ? 2.5 : 1.5);
                         }).on("mouseout", function() {
                             d3.select(this).select("circle").attr("r", 3).attr("fill", "var(--flavor-blueberry)");
                             d3.select(this).select("text").attr("fill", "#747d8c").style("font-weight", "normal");
                             linkGroup.selectAll("path")
-                                .style("stroke-opacity", 0.4).style("stroke", "#dfe4ea").style("stroke-width", 1.5);
+                                .style("stroke-opacity", 0.35)
+                                .style("stroke-width", 1.5);
                         });
 
                         return g.call(enter => enter.transition().duration(500).style("opacity", 1));
                     },
                     update => update.transition().duration(500).attr("transform", d => `translate(${rightX},${yScaleRight(d)})`),
                     exit => exit.transition().duration(300).style("opacity", 0).remove()
-                );
+                )
+                .select("text")
+                .style("font-size", `${dynamicFontSize}px`);
         }
 
         updateGraph();
